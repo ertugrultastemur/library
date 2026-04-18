@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: config-server
+  profiles:
+    active: git
+  cloud:
+    config:
+      server:
+        git:
+          uri:
+server:
+  port: 7777
