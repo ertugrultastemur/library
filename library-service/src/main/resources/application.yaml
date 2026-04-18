@@ -1,42 +1,10 @@
 spring:
+  cloud:
+    config:
+      fail-fast: true
   application:
     name: library-service
-
-  datasource:
-    url: jdbc:oracle:thin:@localhost:1521:LIBDB
-    username: system
-    password: 123456
-    driver-class-name: oracle.jdbc.OracleDriver
-  jpa:
-    database: oracle
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.OracleDialect
-
-
-server:
-  port: 0
-eureka:
-  instance:
-    instance-id: ${spring.application.name}:${random.value}
-    prefer-ip-address: true
-  client:
-    service-url:
-      default-zone: ${EUREKA_URI:http://localhost:8761/eureka}
-
-management:
-  tracing:
-    enabled: true
-    sampling:
-      probability: 1.0
-    propagation:
-      type: w3c
-  zipkin:
-    tracing:
-      endpoint: http://localhost:9411/api/v2/spans
-
-logging:
-  pattern:
-    level: "%5p [${spring.application.name},%X{traceId},%X{spanId}]"
+  config:
+    import: optional:configserver:http://localhost:7777
+  profiles:
+    active: test
