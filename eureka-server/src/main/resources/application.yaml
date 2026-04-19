@@ -1,10 +1,33 @@
 spring:
-  cloud:
-    config:
-      fail-fast: true
   application:
     name: eureka-server
-  config:
-    import: optional:configserver:http://localhost:7777
   profiles:
     active: test
+  cloud:
+    config:
+      enabled: false
+    vault:
+      enabled: true
+      host: localhost
+      port: 8200
+      scheme: http
+      authentication: TOKEN
+      token: ${VAULT_TOKEN}
+      kv:
+        enabled: true
+        backend: eureka-server
+        default-context: default
+      fail-fast: true
+  config:
+    import: optional:vault://
+server:
+  port: 8761
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+management:
+  endpoints:
+    web:
+      exposure:
+        include: *

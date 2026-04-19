@@ -1,10 +1,30 @@
 spring:
-  cloud:
-    config:
-      fail-fast: true
   application:
     name: book-service
-  config:
-    import: optional:configserver:http://localhost:7777
   profiles:
     active: test
+  cloud:
+    config:
+      enabled: false
+    vault:
+      enabled: true
+      host: localhost
+      port: 8200
+      scheme: http
+      authentication: TOKEN
+      token: ${VAULT_TOKEN}
+      kv:
+        enabled: true
+        backend: book-service
+        default-context: default
+      fail-fast: true
+  config:
+    import: optional:vault://
+management:
+  endpoints:
+    web:
+      exposure:
+        include: *
+
+server:
+  port: 0
