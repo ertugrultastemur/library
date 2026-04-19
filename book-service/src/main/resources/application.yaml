@@ -24,7 +24,11 @@ management:
   endpoints:
     web:
       exposure:
-        include: *
+        include: "*"
 
 server:
   port: 0
+
+grpc:
+  server:
+    port: 9876

@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="eureka-server" />
         <module name="config-server" />
+        <module name="library-common" />
       </profile>
       <profile name="Annotation profile for library-service" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -30,6 +31,7 @@
       <module name="config-server" options="-parameters" />
       <module name="eureka-server" options="-parameters" />
       <module name="gateway" options="-parameters" />
+      <module name="library-common" options="" />
       <module name="library-service" options="-parameters" />
     </option>
   </component>
