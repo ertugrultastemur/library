@@ -24,6 +24,15 @@ management:
   endpoints:
     web:
       exposure:
-        include: *
+        include: "*"
 server:
   port: 0
+
+grpc:
+  server:
+    port: 9875
+  client:
+    book-service:
+      enable-keep-alive: true
+      keep-alive-without-calls: true
+      negotiation-type: plaintext

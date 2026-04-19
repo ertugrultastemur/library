@@ -24,6 +24,6 @@ management:
   endpoints:
     web:
       exposure:
-        include: *
+        include: "*"
 server:
   port: 8888
